@@ -1,0 +1,23 @@
+Deploy do source e do javadoc no Nexus:
+mvn clean source:jar javadoc:jar deploy
+
+Para executar o spring boot em modo debug:
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
+
+Descobrir o path do repositório local do Maven:
+mvn help:evaluate -Dexpression=settings.localRepository
+
+Para listar os módulos de um projeto maven:
+mvn --also-make dependency:tree | grep maven-dependency-plugin | awk '{ print $(NF-1) }'
+
+Expurgar uma dependência do repositório local:
+mvn org.apache.maven.plugins:maven-dependency-plugin:3.0.0:purge-local-repository -DmanualInclude=group:artifact:version
+
+Download de um artefato - Se já não existir no repositório do Nexus , força o Nexus baixar de um repositório proxy:
+mvn com.googlecode.maven-download-plugin:download-maven-plugin:1.2.0:artifact -DgroupId=com.oracle.jdbc -DartifactId=ojdbc8 -Dversion=12.2.0.1 -DoutputDirectory=./target -DoutputFileName=ojdbc8.jar
+mvn com.googlecode.maven-download-plugin:download-maven-plugin:1.2.0:artifact -DgroupId=group -DartifactId=artifact -Dversion=version -DoutputDirectory=./target -DoutputFileName=artifact.jar
+
+Deploy de um atefato no Nexus
+mvn deploy:deploy-file -DgeneratePom=false -DrepositoryId=nexus -Durl=https://servidor.xyz.com/nexus/content/repositories/oracle/ -DpomFile=weblogic-maven-plugin-12.2.1-1-0.pom -Dfile=weblogic-maven-plugin-12.2.1-1-0.jar
+mvn org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy-file -Durl=https://servidor.xyz.com/nexus/content/repositories/oracle/ -DrepositoryId=nexus -DgroupId=com.oracle.weblogic
+-DartifactId=weblogic-maven-plugin -Dversion=12.2.1-1-0 -Dpackaging=jar -Dfile=weblogic-maven-plugin-12.2.1-1-0.jar -X -Djsse.enableSNIExtension=false
