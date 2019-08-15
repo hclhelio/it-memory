@@ -21,3 +21,6 @@ Deploy de um atefato no Nexus
 mvn deploy:deploy-file -DgeneratePom=false -DrepositoryId=nexus -Durl=https://servidor.xyz.com/nexus/content/repositories/oracle/ -DpomFile=weblogic-maven-plugin-12.2.1-1-0.pom -Dfile=weblogic-maven-plugin-12.2.1-1-0.jar
 mvn org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy-file -Durl=https://servidor.xyz.com/nexus/content/repositories/oracle/ -DrepositoryId=nexus -DgroupId=com.oracle.weblogic
 -DartifactId=weblogic-maven-plugin -Dversion=12.2.1-1-0 -Dpackaging=jar -Dfile=weblogic-maven-plugin-12.2.1-1-0.jar -X -Djsse.enableSNIExtension=false
+
+
+mvn help:evaluate -Dexpression=settings.localRepository
