@@ -1,0 +1,14 @@
+* Para listar destacando com cores:
+	
+	[user@machine indexer]$ ll | egrep -wi --color 'terceira-release|jboss|xxx|atlassian|central'
+
+	[user@machine indexer]$ find ./ -maxdepth 1 | egrep -wi --color 'terceira-release|jboss|xxx|atlassian|central'
+	./atlassian-ctx
+	./central-ctx
+	./terceira-release-ctx
+	./jboss-ctx
+	./jboss-ctx-tmp5745383981275919150
+	./jboss-ctx-tmp5745383981275919150.dir
+
+* Consultar arquivos e diretórios por data de alterações:
+	find . -type f -newermt 2019-08-09 ! -newermt 2019-08-15 -ls >> ~/change_libs.out
