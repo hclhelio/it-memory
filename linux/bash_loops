@@ -1,0 +1,16 @@
+[root@master-0 bash-scripts]# for i in 214 204 194; do echo Teste: $i; done
+Teste: 214
+Teste: 204
+Teste: 194
+
+[root@master-0 bash-scripts]# for i in {1..7}; do echo Teste: $i; done
+Teste: 1
+Teste: 2
+Teste: 3
+Teste: 4
+Teste: 5
+Teste: 6
+Teste: 7
+
+
+for i in {168..142}; do history -d $i; done
